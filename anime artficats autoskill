@@ -1,0 +1,77 @@
+local skillid = "12861816.3161088"
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "skill thing", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = "Tab 1",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+Tab:AddButton({
+	Name = "do skill x100!",
+	Callback = function()
+	for i=1, 100 do
+	local ohString1 = skillid
+		local ohString2 = "player"
+game:GetService("ReplicatedStorage").Events.SkillEvent:FireServer(ohString1, ohString2)
+end
+	
+  	end    
+})
+Tab:AddButton({
+	Name = "do skill x25!",
+	Callback = function()
+	for i=1, 25 do
+	local ohString1 = skillid
+	local ohString2 = "player"
+
+game:GetService("ReplicatedStorage").Events.SkillEvent:FireServer(ohString1, ohString2)
+end
+	
+  	end    
+})
+Tab:AddButton({
+	Name = "do skill x10!",
+	Callback = function()
+	for i=1, 10 do
+	local ohString1 = skillid
+		local ohString2 = "player"
+game:GetService("ReplicatedStorage").Events.SkillEvent:FireServer(ohString1, ohString2)
+end
+	
+  	end    
+})
+Tab:AddButton({
+	Name = "do skill x5!",
+	Callback = function()
+	for i=1, 5 do
+	local ohString1 = skillid
+local ohString2 = "player"
+
+game:GetService("ReplicatedStorage").Events.SkillEvent:FireServer(ohString1, ohString2)
+end
+	
+  	end    
+})
+Tab:AddButton({
+	Name = "do skill x1!",
+	Callback = function()
+	for i=1, 1 do
+	local ohString1 = skillid
+	local ohString2 = "player"
+
+game:GetService("ReplicatedStorage").Events.SkillEvent:FireServer(ohString1, ohString2)
+end
+	
+  	end    
+})
+Tab:AddButton({
+	Name = "do flash skill!",
+	Callback = function()
+	for i=1, 1 do
+game:GetService("ReplicatedStorage").Events.FootEvent:FireServer()
+end
+	
+  	end    
+})
+OrionLib:Init()
