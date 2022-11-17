@@ -1,0 +1,67 @@
+function quest1accept()
+    game:GetService("ReplicatedStorage").Quest:FireServer("yes")
+end
+function quest1click()
+    fireclickdetector(game:GetService("Workspace").Quests.Quest12.ClickDetector)
+end
+function addstrength()
+    game:GetService("ReplicatedStorage").AddSkillPoint:FireServer("Strength")
+end
+
+local quest1completion = 0
+local Officer1NPC = game:GetService("Workspace").Characters["Seth The Rareborn"].HumanoidRootPart.CFrame
+local Officer1NPCHP = game:GetService("Workspace").Characters["Seth The Rareborn"].Humanoid.Health
+local stats = game:GetService("Players").LordOfTheNazguI.PlayerGui.MainUI.HiddenUIs.StatsFrame.Stats.Strength.Text
+local str = stats
+
+local number = (str:gsub("%STRENGTH: ", ""))
+local damagenumber = number*2+3
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "shitty autofarm",
+    Text = "idkwhoiam#1571",
+    Duration = 5,
+})
+
+_G.FarmOfficers = true
+
+function newquest()
+    quest1click()
+    quest1accept()
+end
+if _G.FarmOfficers == true then 
+    newquest()
+end
+task.spawn(function()
+    while _G.FarmOfficers do
+        if _G.FarmOfficers == false then return end
+        wait()
+        Officer1NPC = game:GetService("Workspace").Characters["Seth The Rareborn"].HumanoidRootPart.CFrame
+        Officer1NPCHP = game:GetService("Workspace").Characters["Seth The Rareborn"].Humanoid.Health
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Officer1NPC * CFrame.new(0,0,7)
+        game:GetService("ReplicatedStorage").Combat:FireServer(1,"Basic Combat")
+        print(Officer1NPCHP)
+        if Officer1NPCHP < damagenumber then
+            Officer1NPC = game:GetService("Workspace").Characters["Seth The Rareborn"].HumanoidRootPart.CFrame
+            for i = 1,10 do
+                wait(0.1)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Officer1NPC * CFrame.new(0,0,7)
+                game:GetService("ReplicatedStorage").Combat:FireServer(1,"Basic Combat")
+            end
+            wait(120)
+            quest1completion = quest1completion+1
+            if quest1completion == 1 then
+                quest1click()
+                quest1completion = 0
+                wait(3)
+                newquest()
+                --for i = 1,100 do 
+                --    addstrength()
+                --end
+            end
+            Officer1NPC = game:GetService("Workspace").Characters["Seth The Rareborn"].HumanoidRootPart.CFrame
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Officer1NPC * CFrame.new(0,0,7)
+            print("waited")
+        end
+    end
+end)
